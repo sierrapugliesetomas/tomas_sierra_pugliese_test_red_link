@@ -1,0 +1,33 @@
+<div class="container">
+  
+  
+  
+  <div *ngIf="this.cuentas; else elseBlock" class="row m-5">
+    <div class="row m-5">
+        <nav class="navbar navbar-light bg-light mb-3">
+      <form [formGroup]="formulario" class="form-inline">
+      <input formControlName="filtroControl" class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="limpiar()">Limpiar</button>
+    </form>
+  </nav>
+      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="ascendente()">Ascendente</button>
+      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="descendente()">Descendente</button>
+    </div>
+    
+    <div class="row">
+      <div class="card-deck">
+        <div *ngFor="let cuenta of cuentas | filter: filtro.value"> 
+        <cuenta [cuenta]="cuenta"></cuenta>
+      </div>
+      </div>
+    </div>
+    
+  </div>
+
+<ng-template #elseBlock >
+  <div class="alert alert-danger row m-5 col-5 text-justify" role="alert" >
+    No hay datos para mostrar
+  </div>
+</ng-template>
+
+</div>
